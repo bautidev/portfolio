@@ -39,7 +39,6 @@ const translations = {
     'nav.experience': 'Experiencia',
     'nav.about': 'Acerca de',
 
-    'sidebar.profiles': 'MIS PERFILES',
     'sidebar.role': 'Técnico en Informática',
     'sidebar.credit': 'Desarrollado por Bautista Avila © 2026',
     'sidebar.toggle.open': 'Abrir menú',
@@ -50,7 +49,7 @@ const translations = {
     'hero.lead': 'Soy Bautista, técnico y apasionado de la tecnología desde hace 18 años.',
     'hero.ctaProjects': 'Ver proyectos',
     'hero.ctaCv': 'Descargar CV',
-    'hero.cv': 'assets/cv/bautista-avila-cv-es.pdf',
+    'hero.cv': 'https://cv.bautiavila.com',
 
     'skills.title': 'MIS HABILIDADES',
     'skills.dev': 'Desarrollo de software',
@@ -89,7 +88,15 @@ const translations = {
     'projects.transport.title': 'Resolvedores de problemas de transporte',
     'projects.transport.description':
       'Es una aplicación web que calcula la solución inicial de problemas de transporte con dos métodos clásicos de investigación operativa: costo mínimo y esquina noroeste. Permite definir orígenes, destinos, ofertas, demandas y costos unitarios, balancea automáticamente los problemas desbalanceados con un nodo ficticio y exporta la matriz resultante a CSV. Lo hicimos como trabajo grupal para la materia «Modelos y Sistemas».',
+    'projects.transport.caption': 'Vista general de la aplicación de resolvedores.',
+    'projects.transport.img1': 'Pantalla principal de los resolvedores de problemas de transporte',
+    'projects.transport.img2': 'Matriz de costos y solución inicial calculada',
     'projects.transport.link': 'Mi perfil de GitHub',
+
+    'projects.tutorial.title': 'Tutorial de administración y gestión de sistemas',
+    'projects.tutorial.description':
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    'projects.tutorial.video': 'Video de YouTube (embebido pendiente)',
 
     'projects.readMore': 'Leer más',
     'projects.readLess': 'Leer menos',
@@ -139,11 +146,9 @@ const translations = {
     'about.github': 'GitHub',
     'about.links': 'Todos mis links',
     'about.cta': 'Hablemos',
-    'about.copyEmail': 'Copiar email',
 
     'notFound.code': 'Error 404',
-    'notFound.title': 'Esta página no existe',
-    'notFound.text': 'Puede que el enlace esté roto o mal escrito.',
+    'notFound.text': 'Esa página no existe o el link está desactualizado.',
     'notFound.cta': 'Volver al inicio',
   },
 
@@ -161,7 +166,6 @@ const translations = {
     'nav.experience': 'Experience',
     'nav.about': 'About',
 
-    'sidebar.profiles': 'MY PROFILES',
     'sidebar.role': 'IT Technician',
     'sidebar.credit': 'Developed by Bautista Avila © 2026',
     'sidebar.toggle.open': 'Open menu',
@@ -173,7 +177,7 @@ const translations = {
       "I'm Bautista, a technician and technology enthusiast for the past 18 years.",
     'hero.ctaProjects': 'See projects',
     'hero.ctaCv': 'Download CV',
-    'hero.cv': 'assets/cv/bautista-avila-cv-en.pdf',
+    'hero.cv': 'https://cv.bautiavila.com',
 
     'skills.title': 'MY SKILLS',
     'skills.dev': 'Software development',
@@ -212,7 +216,15 @@ const translations = {
     'projects.transport.title': 'Transport problem solvers',
     'projects.transport.description':
       'It is a web app that computes the initial solution of transport problems with two classic operations-research methods: minimum cost and northwest corner. You can define origins, destinations, supplies, demands and unit costs, it balances unbalanced problems automatically with a dummy node, and it exports the resulting matrix as CSV. We built it as a group project for the “Models and Systems” course.',
+    'projects.transport.caption': 'Overview of the solvers app.',
+    'projects.transport.img1': 'Main screen of the transport problem solvers',
+    'projects.transport.img2': 'Cost matrix and computed initial solution',
     'projects.transport.link': 'My GitHub profile',
+
+    'projects.tutorial.title': 'Systems administration and management tutorial',
+    'projects.tutorial.description':
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    'projects.tutorial.video': 'YouTube video (embed pending)',
 
     'projects.readMore': 'Read more',
     'projects.readLess': 'Read less',
@@ -262,11 +274,9 @@ const translations = {
     'about.github': 'GitHub',
     'about.links': 'All my links',
     'about.cta': "Let's talk",
-    'about.copyEmail': 'Copy email',
 
     'notFound.code': 'Error 404',
-    'notFound.title': 'This page does not exist',
-    'notFound.text': 'The link may be broken or mistyped.',
+    'notFound.text': 'That page does not exist or the link is outdated.',
     'notFound.cta': 'Back home',
   },
 }

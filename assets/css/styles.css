@@ -124,6 +124,7 @@ body {
 }
 
 .sidebar-role {
+  margin-top: -4px;
   font-size: 12px;
   color: var(--slate-400);
 }
@@ -273,9 +274,16 @@ body {
 }
 
 /* El icono (menu / cruz) se cambia con CSS, sin tocar el DOM desde JS. */
-#sidebar-toggle .icon-close,
+#sidebar-toggle .icon-close {
+  display: none;
+}
+
 #sidebar-toggle.open .icon-menu {
   display: none;
+}
+
+#sidebar-toggle.open .icon-close {
+  display: block;
 }
 
 #sidebar-toggle:hover {
@@ -963,6 +971,33 @@ h1, h2, h3 {
   gap: 10px;
 }
 
+/* Card a fila completa: video a la izquierda, texto a la derecha. */
+.project-card--wide {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(260px, 420px) 1fr;
+}
+
+.video-embed {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  background-color: rgba(2, 6, 23, 0.6);
+  background-image: linear-gradient(135deg, rgba(96, 165, 250, 0.35), rgba(15, 23, 42, 0.9)),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0 8px, transparent 8px 16px);
+  border-right: 1px solid var(--border);
+}
+
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* Lightbox de las galerias: <dialog> nativo, con Esc y foco gratis. */
 .lightbox {
   width: min(1100px, 92vw);
@@ -1369,6 +1404,15 @@ h1, h2, h3 {
   .projects-grid,
   .experience-grid {
     grid-template-columns: 1fr;
+  }
+
+  .project-card--wide {
+    grid-template-columns: 1fr;
+  }
+
+  .video-embed {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
   }
 
   .experience-card {

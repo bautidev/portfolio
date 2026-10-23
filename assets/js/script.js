@@ -280,6 +280,27 @@ if (copyButton) {
   })
 }
 
+// Easter egg: 10 toques a la foto abren un video en pestaña nueva.
+const pfp = document.querySelector('.pfp-placeholder')
+
+if (pfp) {
+  let taps = 0
+  let resetTimer = null
+
+  pfp.addEventListener('click', () => {
+    taps += 1
+    clearTimeout(resetTimer)
+    resetTimer = setTimeout(() => {
+      taps = 0
+    }, 3000)
+
+    if (taps >= 10) {
+      taps = 0
+      window.open('https://www.youtube.com/watch?v=Ti-jrTI0tpM', '_blank', 'noopener')
+    }
+  })
+}
+
 // Al cambiar de idioma hay que rehacer lo que se arma por JS: los rótulos de la
 // galería (con su alt), el nombre de la sección activa y los aria del menú.
 document.addEventListener('languagechange', () => {

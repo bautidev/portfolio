@@ -14,7 +14,7 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-HTML_FILES = sorted(ROOT.glob("*.html"))
+HTML_FILES = sorted(p for p in ROOT.glob("*.html") if not p.name.startswith("."))
 I18N = ROOT / "assets" / "js" / "i18n.js"
 SCRIPT = ROOT / "assets" / "js" / "script.js"
 KEY_IN_HTML = re.compile(r'data-i18n(?:-[a-z-]+)?="([^"]+)"')
