@@ -68,17 +68,24 @@ function currentSectionId() {
   return currentId
 }
 
+let activeId = null
+
 function updateActiveLink() {
   const currentId = currentSectionId()
-  if (!currentId) return
+  // Solo toca el DOM cuando cambia la seccion: reescribir clases y texto
+  // en cada frame fuerza trabajo de estilo y pintura al scrollear.
+  if (!currentId || currentId === activeId) return
+  activeId = currentId
 
-  navLinks.forEach((link) => link.classList.remove('active'))
+  navLinks.forEach((link) => {
+    const isActive = link.getAttribute('href') === `#${currentId}`
+    link.classList.toggle('active', isActive)
+    if (isActive) link.setAttribute('aria-current', 'location')
+    else link.removeAttribute('aria-current')
+  })
+
   const activeLink = document.querySelector(`#nav a[href="#${currentId}"]`)
-  if (!activeLink) return
-
-  activeLink.classList.add('active')
-
-  if (mobileBarCurrent) {
+  if (activeLink && mobileBarCurrent) {
     mobileBarCurrent.textContent = linkLabel(activeLink) || mobileBarCurrent.textContent
   }
 }
@@ -316,6 +323,8 @@ if (pfp) {
 // Al cambiar de idioma hay que rehacer lo que se arma por JS: los rótulos de la
 // galería (con su alt), el nombre de la sección activa y los aria del menú.
 document.addEventListener('languagechange', () => {
+  // El idioma cambia los rotulos aunque la seccion sea la misma.
+  activeId = null
   updateActiveLink()
   setSidebarOpen(sidebar.classList.contains('open'))
   galleries.forEach((gallery) => gallery.refresh())

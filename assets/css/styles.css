@@ -507,9 +507,11 @@ h1, h2, h3 {
   width: 100%;
 }
 
-/* Sin transicion en la base: el resaltado de seccion tiene que entrar
-   y salir al instante, si no deja estela al scrollear rapido. */
+/* El fondo cambia al instante (sin transicion: si no deja estela al
+   scrollear rapido). Lo unico que se anima es la barrita lateral,
+   con transform, que no repinta el fondo (web.dev/animations-guide). */
 #nav a {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -521,6 +523,24 @@ h1, h2, h3 {
   border-radius: var(--radius);
 }
 
+#nav a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transition: transform 150ms ease;
+}
+
+#nav a:hover::before,
+#nav a.active::before {
+  transform: scaleY(1);
+}
+
 #nav a .icon {
   font-size: 20px;
 }
@@ -528,8 +548,6 @@ h1, h2, h3 {
 #nav a:hover {
   background: var(--accent-soft);
   color: var(--accent);
-  /* Solo el hover anima la entrada; la salida y el cambio de seccion son instantaneos. */
-  transition: background-color 150ms ease, color 150ms ease;
 }
 
 /* Sin grosor distinto en el activo: el cambio de font-weight mueve el layout
@@ -537,10 +555,6 @@ h1, h2, h3 {
 #nav a.active {
   background: var(--accent-soft);
   color: var(--accent);
-  /* inset: marca sin mover el layout. */
-  box-shadow: inset 2px 0 0 var(--accent);
-  /* El activo entra al instante: con transicion quedaba atrasado al scrollear rapido. */
-  transition: none;
 }
 
 .lang-toggle-btn {
