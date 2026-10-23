@@ -55,22 +55,21 @@ const translations = {
     'projects.inventory.caption': 'Vista general del programa de administración del pañol.',
     'projects.inventory.description':
       'Al ver que en la escuela no había un control claro sobre los recursos e insumos, me propuse liderar un proyecto para registrar y automatizar el pañol. La idea del sistema no es reemplazar al pañolero, sino facilitarle el trabajo diario. Al retirar un ítem, el usuario solo escanea su carnet (que recibe por email al registrarse) y el código de barras del objeto. Con esto, el sistema genera el préstamo automáticamente y guarda un registro exacto de la fecha, hora, alumno, encargado y cantidad. Para hacerlo más completo y escalable, con el tiempo le fui sumando funciones como un diseñador e impresor de planillas de etiquetas, un panel de estadísticas, compatibilidad con cámaras y lectores físicos, e interfaz web instalable (PWA) en celulares y tablets. El proyecto continúa en desarrollo con nuevas ayudas en camino.',
-    'projects.inventory.img1': 'Sección «Inventario» del programa de administración del pañol',
-    'projects.inventory.img2': 'Préstamos registrados con su fecha de vencimiento',
-    'projects.inventory.img3': 'Formulario para registrar un ítem nuevo',
+    'projects.inventory.img1': 'Panel principal del programa de administración del pañol',
+    'projects.inventory.img2': 'Planilla de etiquetas a tamaño real',
+    'projects.inventory.img3': 'Kiosco del sistema',
 
     'projects.radar.period': 'jun. 2025 — oct. 2025',
     'projects.radar.title': 'Radar ultrasónico con interfaz visual mediante Arduino y Processing',
     'projects.radar.caption': 'Versión final del radar y detalles de su construcción.',
     'projects.radar.description':
-      'Con un servo y un sensor ultrasónico, el dispositivo detectaba la distancia y la posición de un objeto, y avisaba con una alarma sonora y una luz de indicación. Processing mostraba una representación visual y exacta de la distancia. El rango máximo de detección era de 40 cm (limitado artificialmente), el servo giraba hasta 180° y el cuerpo del radar fue impreso en 3D.',
+      'Lideré durante el transcurso del año pasado el desarrollo de un dispositivo que, mediante un Arduino, un servo y un sensor ultrasónico, detectaba la distancia y posición de un objeto, el cual a su vez emitía una alarma sonora y luz de indicación de distancia. Mediante el uso del software Processing, se mostraba una representación visual y exacta de la distancia del objeto. El máximo de distancia de detección era de 40 cm (artificialmente limitado) y admitía un giro del servo de hasta 180°. El cuerpo del radar fue impreso en 3D.',
     'projects.radar.img1': 'Radar ultrasónico con Arduino en su versión final',
-    'projects.radar.img2': 'Interfaz en Processing mostrando la distancia medida',
-    'projects.radar.img3': 'Cuerpo del radar impreso en 3D',
+    'projects.radar.img2': 'Etapa de prototipado en protoboard',
 
     'projects.transport.title': 'Resolvedores de problemas de transporte',
     'projects.transport.description':
-      'Es una aplicación web que calcula la solución inicial de problemas de transporte con dos métodos clásicos de investigación operativa: costo mínimo y esquina noroeste. Permite definir orígenes, destinos, ofertas, demandas y costos unitarios, balancea automáticamente los problemas desbalanceados con un nodo ficticio y exporta la matriz resultante a CSV. Lo hicimos como trabajo grupal para la materia «Modelos y Sistemas».',
+      'Es una aplicación web que calcula la solución inicial de problemas de transporte con dos métodos clásicos de investigación operativa: costo mínimo y esquina noroeste. Permite definir orígenes, destinos, ofertas, demandas y costos unitarios, balancea automáticamente los problemas desbalanceados con un nodo ficticio y exporta la matriz resultante a CSV.',
     'projects.transport.period': 'ago. 2026',
     'projects.transport.caption': 'Vista general de la aplicación de resolvedores.',
     'projects.transport.img1': 'Pantalla principal de los resolvedores de problemas de transporte',
@@ -80,7 +79,7 @@ const translations = {
     'projects.tutorial.period': 'oct. 2026',
     'projects.tutorial.title': 'Tutorial de administración y gestión de sistemas',
     'projects.tutorial.description':
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      'Como parte del trabajo de una materia, elaboré un tutorial sumamente completo de cómo instalar Windows, configurarlo y activarlo, y expliqué el uso de herramientas generales de administración de sistemas como Rufus y Hiren.',
     'projects.tutorial.video': 'Video de YouTube (embebido pendiente)',
 
     'projects.readMore': 'Leer más',
@@ -98,12 +97,15 @@ const translations = {
     'certifications.period': 'En curso',
     'certifications.course': 'Curso avanzado de Flutter',
     'certifications.body':
-      'Tomé un curso avanzado de Flutter y estoy cerca de terminarlo. Aprendí mucho sobre el lenguaje y lo apliqué en la práctica.',
+      'Tomé un curso avanzado de Flutter realizado por Fernando Herrera y estoy cerca de terminarlo. Aprendí mucho sobre el lenguaje y lo apliqué en la práctica.',
 
     'education.title': 'ESTUDIOS',
     'education.period': '2022 — Actualidad',
-    'education.degree': 'Tecnicatura en Informática personal y profesional',
+    'education.degree': 'Tecnicatura en Informática Personal y Profesional',
     'education.description': 'Estoy transitando el último año.',
+    'education.item2.period': '2026',
+    'education.item2.degree': 'Nivel de inglés Proficiency (C1)',
+    'education.item2.school': 'Anglia Examinations',
 
     'experience.title': 'EXPERIENCIA',
     'experience.role': 'Prácticas Profesionalizantes',
@@ -121,11 +123,11 @@ const translations = {
 
     'about.title': 'ACERCA DE',
     'about.p1':
-      'Soy una persona inseparable de la informática desde que tengo uso de razón. Me encuentro transitando el último año de la Tecnicatura en Informática.',
+      'Me encuentro transitando el último año de la Tecnicatura en Informática. Durante mi carrera, he realizado toda clase de proyectos que aportaron a mi formación.',
     'about.p2':
-      'Durante mi carrera, he realizado toda clase de proyectos que aportaron a mi formación. Se destacan diseñar bases de datos, planificar y presupuestar la infraestructura de red de diversas instituciones, diagnosticar y reparar equipos informáticos, desarrollar y liderar proyectos de electrónica, entre otros. También realicé diseños en 3D mediante Autodesk Fusion y cortes láser en RDWorks.',
+      'Se destacan diseñar bases de datos, planificar y presupuestar la infraestructura de red de diversas instituciones, diagnosticar y reparar equipos informáticos, desarrollar y liderar proyectos de electrónica, entre otros. También realicé diseños en 3D mediante Autodesk Fusion y cortes láser en RDWorks. Fuera del ámbito escolar, he participado en diversos cursos de programación y desarrollo, con un especial enfoque en Flutter.',
     'about.p3':
-      'Fuera del ámbito escolar, he participado en diversos cursos de programación y desarrollo, con un especial enfoque en Flutter. Planeo continuar en el futuro la ingeniería en sistemas para seguir expandiendo mis conocimientos y comenzar a especializarme en tecnologías de mi interés, como la programación de bajo nivel y la inteligencia artificial.',
+      'Planeo continuar en el futuro la ingeniería en sistemas para seguir expandiendo mis conocimientos y comenzar a especializarme en tecnologías de mi interés, como la programación de bajo nivel y la inteligencia artificial.',
     'about.contact': 'Contacto',
     'about.linkedin': 'LinkedIn',
     'about.github': 'GitHub',
@@ -186,22 +188,21 @@ const translations = {
     'projects.inventory.caption': 'Overview of the storage room management app.',
     'projects.inventory.description':
       "Seeing that the school had no clear control over its resources and supplies, I set out to lead a project to register and automate the storage room. The point of the system is not to replace the storekeeper but to make their daily work easier. To take an item out, the user only has to scan their ID card (sent by email when they sign up) and the item's barcode. The system then creates the loan automatically and keeps an exact record of the date, time, student, staff member and quantity. To make it more complete and scalable, over time I added features such as a label-sheet designer and printer, a statistics panel, support for cameras and physical scanners, and an installable web app (PWA) for phones and tablets. The project is still in development, with new helpers on the way.",
-    'projects.inventory.img1': '“Inventory” section of the storage room management app',
-    'projects.inventory.img2': 'Registered loans with their due dates',
-    'projects.inventory.img3': 'Form to register a new item',
+    'projects.inventory.img1': 'Main dashboard of the storage room management app',
+    'projects.inventory.img2': 'Label sheet at real size',
+    'projects.inventory.img3': 'System kiosk',
 
     'projects.radar.period': 'Jun 2025 — Oct 2025',
     'projects.radar.title': 'Ultrasonic radar with a visual interface using Arduino and Processing',
     'projects.radar.caption': 'Final version of the radar and details of its construction.',
     'projects.radar.description':
-      'With a servo and an ultrasonic sensor, the device detected the distance and position of an object, and warned with a sound alarm and an indicator light. Processing displayed an accurate visual representation of the distance. The maximum detection range was 40 cm (artificially limited), the servo rotated up to 180° and the radar body was 3D printed.',
+      'Last year I led the development of a device that, using an Arduino, a servo and an ultrasonic sensor, detected the distance and position of an object, sounding an audible alarm and a distance indicator light. Using the Processing software, an accurate visual representation of the object distance was displayed. The maximum detection distance was 40 cm (artificially limited) with servo rotation of up to 180°. The radar body was 3D printed.',
     'projects.radar.img1': 'Ultrasonic radar with Arduino in its final version',
-    'projects.radar.img2': 'Processing interface showing the measured distance',
-    'projects.radar.img3': '3D-printed body of the radar',
+    'projects.radar.img2': 'Prototyping stage on a breadboard',
 
     'projects.transport.title': 'Transport problem solvers',
     'projects.transport.description':
-      'It is a web app that computes the initial solution of transport problems with two classic operations-research methods: minimum cost and northwest corner. You can define origins, destinations, supplies, demands and unit costs, it balances unbalanced problems automatically with a dummy node, and it exports the resulting matrix as CSV. We built it as a group project for the “Models and Systems” course.',
+      'It is a web app that computes the initial solution of transport problems with two classic operations-research methods: minimum cost and northwest corner. You can define origins, destinations, supplies, demands and unit costs, it balances unbalanced problems automatically with a dummy node, and it exports the resulting matrix as CSV.',
     'projects.transport.period': 'Aug 2026',
     'projects.transport.caption': 'Overview of the solvers app.',
     'projects.transport.img1': 'Main screen of the transport problem solvers',
@@ -211,7 +212,7 @@ const translations = {
     'projects.tutorial.period': 'Oct 2026',
     'projects.tutorial.title': 'Systems administration and management tutorial',
     'projects.tutorial.description':
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      'As part of a course assignment, I put together a very comprehensive tutorial on how to install Windows, configure and activate it, and I explained the use of general system administration tools such as Rufus and Hiren.',
     'projects.tutorial.video': 'YouTube video (embed pending)',
 
     'projects.readMore': 'Read more',
@@ -229,12 +230,15 @@ const translations = {
     'certifications.period': 'Ongoing',
     'certifications.course': 'Advanced Flutter course',
     'certifications.body':
-      'I took an advanced Flutter course and I am close to finishing it. I learned a lot about the language and applied it in practice.',
+      'I took an advanced Flutter course by Fernando Herrera and I am close to finishing it. I learned a lot about the language and applied it in practice.',
 
     'education.title': 'EDUCATION',
     'education.period': '2022 — Present',
     'education.degree': 'Technical degree in personal and professional computing',
     'education.description': 'I am in my final year.',
+    'education.item2.period': '2026',
+    'education.item2.degree': 'Proficiency English Level (C1)',
+    'education.item2.school': 'Anglia Examinations',
 
     'experience.title': 'EXPERIENCE',
     'experience.role': 'Professional Internship',
@@ -252,11 +256,11 @@ const translations = {
 
     'about.title': 'ABOUT',
     'about.p1':
-      "I've been inseparable from computing for as long as I can remember. I'm currently in the final year of my IT degree.",
+      "I'm currently in the final year of my IT degree. Throughout my studies I've taken on all kinds of projects that contributed to my training.",
     'about.p2':
-      "Throughout my studies I've taken on all kinds of projects that contributed to my training. Highlights include designing databases, planning and budgeting the network infrastructure of several institutions, diagnosing and repairing computer equipment, and developing and leading electronics projects, among others. I also did 3D designs with Autodesk Fusion and laser cuts in RDWorks.",
+      "Highlights include designing databases, planning and budgeting the network infrastructure of several institutions, diagnosing and repairing computer equipment, and developing and leading electronics projects, among others. I also did 3D designs with Autodesk Fusion and laser cuts in RDWorks. Outside of school I've taken several programming and development courses, with a special focus on Flutter.",
     'about.p3':
-      "Outside of school I've taken several programming and development courses, with a special focus on Flutter. I plan to continue with systems engineering in the future to keep expanding my knowledge and start specializing in technologies I'm interested in, such as low-level programming and artificial intelligence.",
+      "I plan to continue with systems engineering in the future to keep expanding my knowledge and start specializing in technologies I'm interested in, such as low-level programming and artificial intelligence.",
     'about.contact': 'Contact',
     'about.linkedin': 'LinkedIn',
     'about.github': 'GitHub',

@@ -116,6 +116,9 @@ body {
 .sidebar-body {
   background: var(--sidebar-block-2);
   padding: 20px 16px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .sidebar-role {
