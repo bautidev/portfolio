@@ -1,21 +1,4 @@
-/**
- * Traducciones del sitio (ES/EN).
- *
- * En el HTML los textos se marcan asi:
- *   data-i18n="clave"              -> reemplaza el texto del elemento
- *   data-i18n-alt="clave"          -> setea el atributo alt
- *   data-i18n-aria-label="clave"   -> setea aria-label
- *   data-i18n-content="clave"      -> setea content (meta description)
- *
- * El idioma se resuelve en este orden:
- *   1. ?lang=en / ?lang=es en la URL (para links compartidos, gana siempre)
- *   2. la ultima eleccion guardada en localStorage
- *   3. el idioma del navegador (navigator.languages)
- *   4. espanol, como ultimo recurso
- * Al cambiar de idioma se actualiza el parametro de la URL y se avisa con el
- * evento 'languagechange' en document para que script.js refresque lo que
- * genera por JS.
- */
+/* data-i18n="key" fills text (alt/aria-label/content for attributes); language: URL > saved > browser > es. */
 
 const STORAGE_KEY = 'bautiavila:lang'
 const URL_PARAM = 'lang'
@@ -287,7 +270,7 @@ const translations = {
   },
 }
 
-/** 'EN-us' / 'es_AR' / 'en' -> 'en' | 'es', o null si no lo hablamos. */
+/** 'en-US' / 'es_AR' / 'en' -> 'en' | 'es', else null. */
 function normalizeLanguage(value) {
   if (!value) return null
 
@@ -310,11 +293,11 @@ function writeStoredLanguage(language) {
   try {
     localStorage.setItem(STORAGE_KEY, language)
   } catch (error) {
-    /* modo privado: seguimos sin persistir */
+    /* Private mode: just don't persist. */
   }
 }
 
-/** Idioma pedido explicitamente en la URL (?lang=en). */
+/** Language explicitly requested via URL (?lang=en). */
 function languageFromUrl() {
   try {
     return normalizeLanguage(new URL(window.location.href).searchParams.get(URL_PARAM))
@@ -323,7 +306,7 @@ function languageFromUrl() {
   }
 }
 
-/** Primer idioma soportado dentro de las preferencias del navegador. */
+/** First supported language from browser preferences. */
 function languageFromBrowser(languages) {
   const list = languages || navigator.languages || [navigator.language]
 
@@ -335,7 +318,7 @@ function languageFromBrowser(languages) {
   return null
 }
 
-/** Deja la URL con ?lang=<idioma>, sin recargar ni ensuciar el historial. */
+/** Sets ?lang=<...>, without reload or history noise. */
 function writeUrlLanguage(language) {
   if (!window.history || !window.history.replaceState) return
 
@@ -344,7 +327,7 @@ function writeUrlLanguage(language) {
     url.searchParams.set(URL_PARAM, language)
     window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
   } catch (error) {
-    /* file:// o historial bloqueado: la URL se queda como esta */
+    /* file:// or blocked history: the URL stays put. */
   }
 }
 
@@ -353,7 +336,7 @@ function getLanguage() {
 }
 
 
-/** Resolucion completa, sin efectos: URL > guardado > navegador > default. */
+/** Full resolution, no side effects: URL > saved > browser > default. */
 function resolveLanguage() {
   return (
     languageFromUrl() ||
@@ -363,7 +346,7 @@ function resolveLanguage() {
   )
 }
 
-/** Devuelve la clave traducida, con {variables} interpoladas. */
+/** Translated key, with {variables} interpolated. */
 function t(key, variables) {
   const dictionary = translations[getLanguage()] || translations[DEFAULT_LANGUAGE]
   const value = dictionary[key] ?? translations[DEFAULT_LANGUAGE][key] ?? ''
@@ -375,7 +358,7 @@ function t(key, variables) {
   )
 }
 
-/** Reemplaza solo los nodos de texto, para no borrar los íconos de adentro. */
+/** Text nodes only, so inner icons survive. */
 function setElementText(element, value) {
   const textNodes = Array.from(element.childNodes).filter(
     (node) => node.nodeType === Node.TEXT_NODE
@@ -399,7 +382,7 @@ function applyLanguage(language) {
 
   document.querySelectorAll('*').forEach((element) => {
     element.getAttributeNames().forEach((name) => {
-      // data-i18n (texto) o data-i18n-alt / -aria-label / -content (atributos)
+      // data-i18n (text) or data-i18n-alt / -aria-label / -content (attributes)
       if (name !== ATTRIBUTE_PREFIX && !name.startsWith(`${ATTRIBUTE_PREFIX}-`)) return
 
       const value = dictionary[element.getAttribute(name)]
@@ -443,7 +426,6 @@ window.i18n = {
   languages: Object.keys(translations),
 }
 
-// Un ?lang=... en la URL es intencion explicita: se respeta pero no se pisa la
-// preferencia guardada de la persona que abrio el link.
+// ?lang= in the URL is explicit: honored, never overwriting the saved choice.
 const fromUrl = languageFromUrl()
 setLanguage(fromUrl || resolveLanguage(), { persist: false, updateUrl: false })

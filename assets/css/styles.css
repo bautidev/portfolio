@@ -25,8 +25,7 @@ html {
   overscroll-behavior: none;
 }
 
-/* Documento de scroll normal: cada seccion crece con su contenido y el aire
-   entre bloques se maneja con padding. */
+/* Normal flow doc: sections grow with content, padding handles spacing. */
 section {
   position: relative;
   display: flex;
@@ -41,7 +40,7 @@ section {
   min-height: 100svh;
 }
 
-/* Scrim: degradado en vez de un negro plano al 50%. */
+/* Scrim: gradient instead of flat 50% black. */
 section.media::after {
   content: '';
   position: absolute;
@@ -99,8 +98,7 @@ body {
   flex-direction: column;
   transition: transform 200ms ease;
   overflow: hidden;
-  /* Capa propia de composicion: el sidebar no se repinta con el contenido
-     que scrollea debajo y el hover deja de titilar. */
+  /* Own compositing layer: sidebar stops repainting with scrolling content. */
   translate: 0 0;
 }
 
@@ -224,7 +222,7 @@ body {
   gap: 8px;
 }
 
-/* Acceso directo al mail: en mobile la barra lateral queda detras del menu. */
+/* Direct mail link: on mobile the sidebar sits behind the menu. */
 .mobile-bar-icon {
   display: flex;
   align-items: center;
@@ -270,7 +268,7 @@ body {
   color: inherit;
 }
 
-/* El icono (menu / cruz) se cambia con CSS, sin tocar el DOM desde JS. */
+/* The icon (menu/cross) swaps in CSS, no DOM writes from JS. */
 #sidebar-toggle .icon-close {
   display: none;
 }
@@ -306,7 +304,7 @@ body {
 @media (max-width: 767px) {
   #sidebar {
     transform: translateX(-100%);
-    /* Cerrada queda fuera de pantalla y fuera del orden de tabulacion. */
+    /* Closed sidebar stays off-screen and out of tab order. */
     visibility: hidden;
     transition: transform 200ms ease, visibility 0s linear 200ms;
   }
@@ -346,8 +344,7 @@ h1, h2, h3 {
   font-weight: 900;
 }
 
-/* Iconos: sprite SVG inline. El tamano sigue manejandose con font-size (1em)
-   para no tener que tocar cada regla que ya lo definia. */
+/* Inline SVG sprite icons, sized with font-size. */
 .icon {
   flex-shrink: 0;
   width: 1em;
@@ -507,9 +504,7 @@ h1, h2, h3 {
   width: 100%;
 }
 
-/* El fondo cambia al instante (sin transicion: si no deja estela al
-   scrollear rapido). Lo unico que se anima es la barrita lateral,
-   con transform, que no repinta el fondo (web.dev/animations-guide). */
+/* Background switches instantly (no trail on fast scroll); only the bar animates, via transform. */
 #nav a {
   position: relative;
   display: flex;
@@ -550,8 +545,7 @@ h1, h2, h3 {
   color: var(--accent);
 }
 
-/* Sin grosor distinto en el activo: el cambio de font-weight mueve el layout
-   y parpadea al scrollear rápido entre secciones. */
+/* Same weight on active: font-weight shifts break layout on fast scroll. */
 #nav a.active {
   background: var(--accent-soft);
   color: var(--accent);
@@ -583,8 +577,6 @@ h1, h2, h3 {
   color: var(--accent);
 }
 
-/* --- Secciones con contenido --- */
-
 .section-shell {
   position: relative;
   z-index: 2;
@@ -612,9 +604,7 @@ h1, h2, h3 {
   max-width: 720px;
 }
 
-/* Proyectos */
-
-/* Una sola columna: la descripcion es el contenido y necesita ancho de lectura. */
+/* Single column: the description needs reading width. */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -623,7 +613,7 @@ h1, h2, h3 {
   max-width: 1100px;
 }
 
-/* Las cards bajo el fold no se pintan hasta acercarse: menos trabajo inicial. */
+/* Below-the-fold cards skip painting until near: less upfront work. */
 .project-card,
 .experience-card,
 .timeline-item {
@@ -665,8 +655,6 @@ h1, h2, h3 {
   line-height: 1.65;
   color: var(--slate-200);
 }
-
-/* Figura del proyecto: la imagen manda sobre el texto. */
 
 .project-figure {
   margin: 0;
@@ -725,8 +713,6 @@ h1, h2, h3 {
   line-height: 1.5;
   color: var(--slate-400);
 }
-
-/* Galería de imágenes del proyecto */
 
 .gallery-nav {
   position: absolute;
@@ -829,7 +815,7 @@ h1, h2, h3 {
   box-shadow: 0 0 0 1px var(--accent);
 }
 
-/* La imagen del proyecto se puede ampliar: es un boton de verdad. */
+/* The stage image is a real button (opens the zoom). */
 .gallery-stage-button {
   position: absolute;
   inset: 0;
@@ -848,7 +834,6 @@ h1, h2, h3 {
   color: var(--accent);
 }
 
-/* La descripcion larga arranca cortada a 4 lineas con puntos suspensivos. */
 .card-desc {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -861,7 +846,7 @@ h1, h2, h3 {
   -webkit-line-clamp: none;
 }
 
-/* 'Leer mas' la abre entera, y el JS lo esconde si la descripcion no se corta. */
+/* JS hides it when the description fits. */
 .card-more {
   display: inline-flex;
   align-items: center;
@@ -922,8 +907,6 @@ h1, h2, h3 {
 .card-link:hover {
   gap: 10px;
 }
-
-/* Card a fila completa: video a la izquierda, texto a la derecha. */
 .project-card--wide {
   grid-column: 1 / -1;
   display: grid;
@@ -950,7 +933,7 @@ h1, h2, h3 {
   border: 0;
 }
 
-/* Lightbox de las galerias: <dialog> nativo, con Esc y foco gratis. */
+/* Native <dialog>: Esc, focus trap and backdrop for free. */
 .lightbox {
   width: min(1100px, 92vw);
   max-width: none;
@@ -992,8 +975,6 @@ h1, h2, h3 {
 .lightbox-bar .button-icon .icon {
   font-size: 20px;
 }
-
-/* Estudios */
 
 .timeline {
   list-style: none;
@@ -1071,8 +1052,6 @@ h1, h2, h3 {
   line-height: 1.6;
   color: var(--slate-200);
 }
-
-/* Experiencia */
 
 .experience-grid {
   display: grid;
@@ -1174,8 +1153,6 @@ h1, h2, h3 {
   border-radius: 50%;
   background: var(--accent);
 }
-
-/* Acerca de */
 
 .about-layout {
   flex-direction: row;
@@ -1327,7 +1304,7 @@ h1, h2, h3 {
 
 @media (max-width: 767px) {
   html {
-    /* Deja aire bajo la barra fija al saltar a una seccion. */
+    /* Offset in-page anchors below the fixed bar. */
     scroll-padding-top: 76px;
   }
 
@@ -1369,7 +1346,7 @@ h1, h2, h3 {
     border-bottom: 1px solid var(--border);
   }
 
-  /* Sin blur en mobile: es lo mas caro de pintar al scrollear. */
+  /* No blur on mobile: the priciest paint while scrolling. */
   .skill-group,
   .project-card,
   .timeline-body,
@@ -1433,19 +1410,15 @@ h1, h2, h3 {
   }
 }
 
-/* Datos tecnicos (periodos, contadores, handles) en monoespaciada: tono de
-   ficha tecnica sin tocar la paleta ni la estructura. */
+/* Periods, counters and handles read as spec-sheet mono. */
 .card-period,
 .timeline-period,
 .experience-period,
 .gallery-counter,
 .mobile-bar-current,
-.contact-value,
-.footer-subtitle {
+.contact-value {
   font-family: var(--font-mono);
 }
-
-/* Boton cuadrado de solo icono (copiar email). */
 .button-icon {
   display: inline-flex;
   align-items: center;
@@ -1476,7 +1449,7 @@ h1, h2, h3 {
   flex: 1;
 }
 
-/* El check reemplaza al icono de copiar cuando ya se copio el email. */
+/* The check replaces the copy icon once copied. */
 [data-copy-email] .icon-check,
 [data-copy-email].is-copied .icon-copy {
   display: none;
@@ -1490,8 +1463,6 @@ h1, h2, h3 {
   border-color: var(--accent);
   color: var(--accent);
 }
-
-/* Foco visible en todo lo interactivo. */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
@@ -1510,7 +1481,7 @@ h1, h2, h3 {
   }
 }
 
-/* Sin hover el :hover se queda pegado despues del tap y la card queda levantada. */
+/* No lift on touch: :hover sticks after tap. */
 @media (hover: none) {
   .skill-group:hover,
   .project-card:hover,
@@ -1519,8 +1490,7 @@ h1, h2, h3 {
   }
 }
 
-/* Con la transparencia reducida el vidrio se apaga. Las superficies que llevan
-   texto encima pasan a fondo solido: el mismo color, pero opaco. */
+/* Without transparency the glass goes solid. */
 @media (prefers-reduced-transparency: reduce) {
   *,
   *::before,

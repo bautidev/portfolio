@@ -10,6 +10,10 @@ Personal portfolio built with plain HTML, CSS and JavaScript, no dependencies.
 
 Live at [portfolio.bautiavila.com](https://portfolio.bautiavila.com)
 
+## CV
+
+The downloadable CVs live in the link-in-bio repo (`assets/cv/`) and are served at [bautiavila.com/cv](https://bautiavila.com/cv), which picks Spanish or English from the browser language. `cv.bautiavila.com` forwards there.
+
 ## Features
 
 - Bilingual Spanish/English with `?lang=`, saved preference and browser detection

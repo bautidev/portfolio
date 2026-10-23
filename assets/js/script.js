@@ -36,7 +36,7 @@ document
   .querySelector('.mobile-bar-brand')
   .addEventListener('click', closeSidebar)
 
-// Escape cierra el menu abierto y devuelve el foco al boton que lo abrio.
+// Esc closes the open menu and returns focus to its button.
 document.addEventListener('keydown', (event) => {
   if (event.key !== 'Escape' || !sidebar.classList.contains('open')) return
 
@@ -54,9 +54,7 @@ function linkLabel(link) {
     .trim()
 }
 
-// La seccion actual es la ultima que cruzo el ancla (40% del viewport):
-// a diferencia de los ratios del observer, no hay valores viejos que hagan
-// parpadear el activo cuando se scrollea rapido.
+// Active section = last one past the 40% viewport line: no stale observer ratios.
 function currentSectionId() {
   const anchor = window.innerHeight * 0.4
   let currentId = sections.length ? sections[0].id : null
@@ -72,8 +70,7 @@ let activeId = null
 
 function updateActiveLink() {
   const currentId = currentSectionId()
-  // Solo toca el DOM cuando cambia la seccion: reescribir clases y texto
-  // en cada frame fuerza trabajo de estilo y pintura al scrollear.
+  // Only touch the DOM on section change: per-frame writes cost style and paint.
   if (!currentId || currentId === activeId) return
   activeId = currentId
 
@@ -90,8 +87,7 @@ function updateActiveLink() {
   }
 }
 
-// Un update por frame como maximo: el activo cambia una sola vez por
-// seccion aunque el scroll dispare decenas de eventos por segundo.
+// At most one update per frame, however many scroll events fire.
 let spyQueued = false
 
 function queueSpy() {
@@ -107,14 +103,13 @@ window.addEventListener('scroll', queueSpy, { passive: true })
 window.addEventListener('resize', updateActiveLink)
 updateActiveLink()
 
-// Galerías de imágenes de los proyectos
 const galleries = []
 const lightbox = document.getElementById('lightbox')
 const lightboxImage = lightbox && lightbox.querySelector('.lightbox-img')
 const lightboxCaption = lightbox && lightbox.querySelector('.lightbox-caption')
 let lightboxGallery = null
 
-// <dialog> nativo: Esc, foco atrapado y backdrop salen gratis.
+// Native <dialog>: Esc, focus trap and backdrop for free.
 function renderLightbox() {
   const slide = lightboxGallery && lightboxGallery.current()
   if (!slide) return
@@ -138,7 +133,7 @@ document.querySelectorAll('[data-gallery]').forEach((gallery) => {
 
   if (!image || thumbs.length < 2) return
 
-  // Se guardan los <img> de las miniaturas (no sus datos) porque el alt cambia con el idioma.
+  // Keep the thumbnail <img>s (not data): alt text follows the language.
   const slides = thumbs.map((thumb) => thumb.querySelector('img'))
 
   let index = 0
@@ -147,7 +142,7 @@ document.querySelectorAll('[data-gallery]').forEach((gallery) => {
     index = (nextIndex + slides.length) % slides.length
     const slide = slides[index]
 
-    // El fallback se oculta con display:none inline; hay que reponerlo antes de cambiar la imagen.
+    // Fallback hides via inline display:none; restore it before swapping the image.
     image.style.display = ''
 
     if (slide) {
@@ -195,7 +190,7 @@ document.querySelectorAll('[data-gallery]').forEach((gallery) => {
   if (prevButton) prevButton.addEventListener('click', () => show(index - 1))
   if (nextButton) nextButton.addEventListener('click', () => show(index + 1))
 
-  // Deslizar el dedo para pasar de imagen (solo si el gesto es horizontal)
+  // Finger swipe switches image, horizontal gestures only.
   let touchStart = null
 
   gallery.addEventListener(
@@ -241,13 +236,13 @@ if (lightbox) {
     renderLightbox()
   })
 
-  // Clic afuera de la caja (sobre el backdrop) cierra.
+  // Click outside the box (on the backdrop) closes.
   lightbox.addEventListener('click', (event) => {
     if (event.target === lightbox) lightbox.close()
   })
 }
 
-// 'Leer más' recorta la descripción del proyecto. Solo aparece si no entra.
+// 'Read more' clips long descriptions; hidden when everything fits.
 const descriptions = Array.from(document.querySelectorAll('[data-more]')).map((button) => ({
   button,
   text: button.previousElementSibling,
@@ -271,7 +266,7 @@ descriptions.forEach(({ button, text }) => {
 refreshDescriptions()
 window.addEventListener('resize', refreshDescriptions)
 
-// Copiar el email al portapapeles, con confirmación visual.
+// Copy the email to the clipboard, with visual confirmation.
 const copyButton = document.querySelector('[data-copy-email]')
 
 if (copyButton) {
@@ -283,8 +278,7 @@ if (copyButton) {
     try {
       await navigator.clipboard.writeText(email)
     } catch (error) {
-      // ponytail: execCommand está deprecado pero cubre contextos sin clipboard API
-      // (http sin TLS). Si algún día lo sacan, queda solo el caso moderno.
+      // ponytail: deprecated execCommand covers no-clipboard contexts (plain http).
       const field = document.createElement('textarea')
       field.value = email
       document.body.appendChild(field)
@@ -299,7 +293,7 @@ if (copyButton) {
   })
 }
 
-// Easter egg: 10 toques a la foto abren un video en pestaña nueva.
+// Easter egg: 10 taps on the photo open a video in a new tab.
 const pfp = document.querySelector('.pfp-placeholder')
 
 if (pfp) {
@@ -320,10 +314,9 @@ if (pfp) {
   })
 }
 
-// Al cambiar de idioma hay que rehacer lo que se arma por JS: los rótulos de la
-// galería (con su alt), el nombre de la sección activa y los aria del menú.
+// On language change rebuild what JS owns: gallery labels, active name, menu aria.
 document.addEventListener('languagechange', () => {
-  // El idioma cambia los rotulos aunque la seccion sea la misma.
+  // Rerun even on the same section: labels changed language.
   activeId = null
   updateActiveLink()
   setSidebarOpen(sidebar.classList.contains('open'))

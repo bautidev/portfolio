@@ -1,12 +1,8 @@
-"""Chequeo del sitio. Corre con: python3 tools/check.py
+"""Fail-fast site check. Run: python3 tools/check.py
 
-Verifica lo que es facil romper a mano:
-  1. Cada clave usada en el HTML existe en los dos idiomas.
-  2. No quedan claves muertas en el diccionario.
-  3. Cada asset local referenciado existe en disco.
-  4. Cada URL absoluta al dominio apunta a un archivo que existe.
-
-Sin dependencias. Sale con codigo 1 si algo falla.
+Verifies used keys exist in both languages, no dead keys,
+every local asset exists, every absolute URL resolves.
+No dependencies, exits 1 on failure.
 """
 
 import pathlib
@@ -45,7 +41,7 @@ def main() -> int:
     for key in sorted(used - en):
         problems.append(f"falta en EN: {key}")
     for key in sorted((es | en) - used):
-        # Algunas claves se arman por JS (rotulos de la galeria, aria del menu).
+        # Some keys are built by JS (gallery labels, menu aria).
         if key not in script:
             problems.append(f"clave sin usar: {key}")
 
@@ -59,7 +55,7 @@ def main() -> int:
                 problems.append(f"{name}: asset inexistente {asset}")
 
         for path in HOST_URL.findall(clean):
-            # "/" y "/?lang=en" apuntan a la home, no a un archivo.
+            # "/" and "/?lang=en" point at home, not a file.
             if path == "/" or path.startswith("/?"):
                 continue
             if not (ROOT / path.lstrip("/")).exists():
