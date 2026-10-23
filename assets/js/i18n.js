@@ -88,13 +88,13 @@ const translations = {
     'projects.transport.title': 'Resolvedores de problemas de transporte',
     'projects.transport.description':
       'Es una aplicación web que calcula la solución inicial de problemas de transporte con dos métodos clásicos de investigación operativa: costo mínimo y esquina noroeste. Permite definir orígenes, destinos, ofertas, demandas y costos unitarios, balancea automáticamente los problemas desbalanceados con un nodo ficticio y exporta la matriz resultante a CSV. Lo hicimos como trabajo grupal para la materia «Modelos y Sistemas».',
-    'projects.transport.period': 'ago. 2025',
+    'projects.transport.period': 'ago. 2026',
     'projects.transport.caption': 'Vista general de la aplicación de resolvedores.',
     'projects.transport.img1': 'Pantalla principal de los resolvedores de problemas de transporte',
     'projects.transport.img2': 'Matriz de costos y solución inicial calculada',
     'projects.transport.link': 'Mi perfil de GitHub',
 
-    'projects.tutorial.period': 'oct. 2025',
+    'projects.tutorial.period': 'oct. 2026',
     'projects.tutorial.title': 'Tutorial de administración y gestión de sistemas',
     'projects.tutorial.description':
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -148,6 +148,7 @@ const translations = {
     'about.github': 'GitHub',
     'about.links': 'Todos mis links',
     'about.cta': 'Hablemos',
+    'about.copyEmail': 'Copiar email',
 
     'notFound.code': 'Error 404',
     'notFound.text': 'Esa página no existe o el link está desactualizado.',
@@ -218,13 +219,13 @@ const translations = {
     'projects.transport.title': 'Transport problem solvers',
     'projects.transport.description':
       'It is a web app that computes the initial solution of transport problems with two classic operations-research methods: minimum cost and northwest corner. You can define origins, destinations, supplies, demands and unit costs, it balances unbalanced problems automatically with a dummy node, and it exports the resulting matrix as CSV. We built it as a group project for the “Models and Systems” course.',
-    'projects.transport.period': 'Aug 2025',
+    'projects.transport.period': 'Aug 2026',
     'projects.transport.caption': 'Overview of the solvers app.',
     'projects.transport.img1': 'Main screen of the transport problem solvers',
     'projects.transport.img2': 'Cost matrix and computed initial solution',
     'projects.transport.link': 'My GitHub profile',
 
-    'projects.tutorial.period': 'Oct 2025',
+    'projects.tutorial.period': 'Oct 2026',
     'projects.tutorial.title': 'Systems administration and management tutorial',
     'projects.tutorial.description':
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -278,6 +279,7 @@ const translations = {
     'about.github': 'GitHub',
     'about.links': 'All my links',
     'about.cta': "Let's talk",
+    'about.copyEmail': 'Copy email',
 
     'notFound.code': 'Error 404',
     'notFound.text': 'That page does not exist or the link is outdated.',

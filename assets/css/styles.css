@@ -27,19 +27,13 @@ html {
 
 /* Documento de scroll normal: cada seccion crece con su contenido y el aire
    entre bloques se maneja con padding. */
-section,
-#not-found {
+section {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
   padding: clamp(88px, 11vh, 140px) 6vw;
-}
-
-#not-found {
-  min-height: 100vh;
-  min-height: 100svh;
 }
 
 #hero {
@@ -105,6 +99,9 @@ body {
   flex-direction: column;
   transition: transform 200ms ease;
   overflow: hidden;
+  /* Capa propia de composicion: el sidebar no se repinta con el contenido
+     que scrollea debajo y el hover deja de titilar. */
+  translate: 0 0;
 }
 
 .sidebar-header {
@@ -399,31 +396,6 @@ h1, h2, h3 {
   color: var(--slate-200);
 }
 
-.hero-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 12px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--slate-200);
-  background: rgba(2, 6, 23, 0.6);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  backdrop-filter: blur(6px);
-}
-
-.hero-status::before {
-  content: '';
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #4ade80;
-  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.18);
-}
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -535,6 +507,8 @@ h1, h2, h3 {
   width: 100%;
 }
 
+/* Sin transicion en la base: el resaltado de seccion tiene que entrar
+   y salir al instante, si no deja estela al scrollear rapido. */
 #nav a {
   display: flex;
   align-items: center;
@@ -545,7 +519,6 @@ h1, h2, h3 {
   font-weight: 500;
   padding: 10px 14px;
   border-radius: var(--radius);
-  transition: background-color 150ms ease, color 150ms ease;
 }
 
 #nav a .icon {
@@ -555,6 +528,8 @@ h1, h2, h3 {
 #nav a:hover {
   background: var(--accent-soft);
   color: var(--accent);
+  /* Solo el hover anima la entrada; la salida y el cambio de seccion son instantaneos. */
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
 /* Sin grosor distinto en el activo: el cambio de font-weight mueve el layout
@@ -562,28 +537,10 @@ h1, h2, h3 {
 #nav a.active {
   background: var(--accent-soft);
   color: var(--accent);
-}
-
-.footer-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-
-.footer-subtitle {
-  font-size: 11px;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--slate-400);
-}
-
-.footer-divider {
-  border: none;
-  height: 1px;
-  background: var(--border);
-  margin: 0 8px;
+  /* inset: marca sin mover el layout. */
+  box-shadow: inset 2px 0 0 var(--accent);
+  /* El activo entra al instante: con transicion quedaba atrasado al scrollear rapido. */
+  transition: none;
 }
 
 .lang-toggle-btn {
@@ -609,34 +566,6 @@ h1, h2, h3 {
 
 .lang-toggle-btn:hover {
   background: var(--accent-soft);
-  color: var(--accent);
-}
-
-.contact-links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.contact-links a {
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--text);
-  text-decoration: none;
-  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
-}
-
-.contact-links a:hover {
-  background: var(--accent-soft);
-  border-color: var(--accent);
   color: var(--accent);
 }
 
@@ -678,6 +607,14 @@ h1, h2, h3 {
   gap: 16px;
   width: 100%;
   max-width: 1100px;
+}
+
+/* Las cards bajo el fold no se pintan hasta acercarse: menos trabajo inicial. */
+.project-card,
+.experience-card,
+.timeline-item {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
 }
 
 .project-card {
@@ -1321,8 +1258,10 @@ h1, h2, h3 {
   justify-content: center;
   gap: 8px;
   padding: 11px;
+  font-family: inherit;
   font-size: 13px;
   font-weight: 700;
+  cursor: pointer;
   color: #ffffff;
   text-decoration: none;
   background: var(--blue-500);
@@ -1414,6 +1353,16 @@ h1, h2, h3 {
   .video-embed {
     border-right: none;
     border-bottom: 1px solid var(--border);
+  }
+
+  /* Sin blur en mobile: es lo mas caro de pintar al scrollear. */
+  .skill-group,
+  .project-card,
+  .timeline-body,
+  .experience-card,
+  .about-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   .experience-card {
@@ -1513,12 +1462,6 @@ h1, h2, h3 {
   flex: 1;
 }
 
-.about-actions .button-icon {
-  align-self: stretch;
-  width: 44px;
-  height: auto;
-}
-
 /* El check reemplaza al icono de copiar cuando ya se copio el email. */
 [data-copy-email] .icon-check,
 [data-copy-email].is-copied .icon-copy {
@@ -1571,10 +1514,6 @@ h1, h2, h3 {
   .lightbox::backdrop {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-  }
-
-  .mobile-bar {
-    background: var(--slate-950);
   }
 
   .skill-group,

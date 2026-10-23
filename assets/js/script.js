@@ -44,8 +44,7 @@ document.addEventListener('keydown', (event) => {
   sidebarToggle.focus()
 })
 
-const sections = document.querySelectorAll('section[id]')
-const sectionRatios = new Map()
+const sections = Array.from(document.querySelectorAll('section[id]'))
 
 function linkLabel(link) {
   return Array.from(link.childNodes)
@@ -55,17 +54,22 @@ function linkLabel(link) {
     .trim()
 }
 
+// La seccion actual es la ultima que cruzo el ancla (40% del viewport):
+// a diferencia de los ratios del observer, no hay valores viejos que hagan
+// parpadear el activo cuando se scrollea rapido.
+function currentSectionId() {
+  const anchor = window.innerHeight * 0.4
+  let currentId = sections.length ? sections[0].id : null
+
+  for (const section of sections) {
+    if (section.getBoundingClientRect().top <= anchor) currentId = section.id
+  }
+
+  return currentId
+}
+
 function updateActiveLink() {
-  let currentId = null
-  let maxRatio = 0
-
-  sectionRatios.forEach((ratio, id) => {
-    if (ratio > maxRatio) {
-      maxRatio = ratio
-      currentId = id
-    }
-  })
-
+  const currentId = currentSectionId()
   if (!currentId) return
 
   navLinks.forEach((link) => link.classList.remove('active'))
@@ -79,14 +83,22 @@ function updateActiveLink() {
   }
 }
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    sectionRatios.set(entry.target.id, entry.intersectionRatio)
-  })
-  updateActiveLink()
-}, { threshold: [0, 0.25, 0.5, 0.75, 1] })
+// Un update por frame como maximo: el activo cambia una sola vez por
+// seccion aunque el scroll dispare decenas de eventos por segundo.
+let spyQueued = false
 
-sections.forEach((section) => observer.observe(section))
+function queueSpy() {
+  if (spyQueued) return
+  spyQueued = true
+  requestAnimationFrame(() => {
+    spyQueued = false
+    updateActiveLink()
+  })
+}
+
+window.addEventListener('scroll', queueSpy, { passive: true })
+window.addEventListener('resize', updateActiveLink)
+updateActiveLink()
 
 // Galerías de imágenes de los proyectos
 const galleries = []
