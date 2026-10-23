@@ -557,10 +557,11 @@ h1, h2, h3 {
   color: var(--accent);
 }
 
+/* Sin grosor distinto en el activo: el cambio de font-weight mueve el layout
+   y parpadea al scrollear rápido entre secciones. */
 #nav a.active {
   background: var(--accent-soft);
   color: var(--accent);
-  font-weight: 700;
 }
 
 .footer-section {
