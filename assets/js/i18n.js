@@ -79,7 +79,7 @@ const translations = {
     'projects.tutorial.period': 'oct. 2026',
     'projects.tutorial.title': 'Tutorial de administración y gestión de sistemas',
     'projects.tutorial.description':
-      'Como parte del trabajo de una materia, elaboré un tutorial sumamente completo de cómo instalar Windows, configurarlo y activarlo, y expliqué el uso de herramientas generales de administración de sistemas como Rufus y Hiren.',
+      'Este tutorial muestra y explica cómo instalar Windows y Office, activarlos, utilizar herramientas como Rufus y Ventoy, recuperar la contraseña de una cuenta de usuario con Hiren\'s Boot CD y optimizar la instalación para obtener un mejor rendimiento. Fue realizado como trabajo práctico para mi formación como técnico.',
     'projects.tutorial.video': 'Video de YouTube (embebido pendiente)',
 
     'projects.readMore': 'Leer más',
@@ -212,7 +212,7 @@ const translations = {
     'projects.tutorial.period': 'Oct 2026',
     'projects.tutorial.title': 'Systems administration and management tutorial',
     'projects.tutorial.description':
-      'As part of a course assignment, I put together a very comprehensive tutorial on how to install Windows, configure and activate it, and I explained the use of general system administration tools such as Rufus and Hiren.',
+      'This tutorial shows and explains how to install Windows and Office, activate them, use tools such as Rufus and Ventoy, recover a user account password with Hiren\'s Boot CD, and optimize the installation for better performance. It was created as a practical assignment for my training as a technician.',
     'projects.tutorial.video': 'YouTube video (embed pending)',
 
     'projects.readMore': 'Read more',
